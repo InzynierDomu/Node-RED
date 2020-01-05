@@ -1,0 +1,223 @@
+[
+    {
+        "id": "fae77473.0e25c8",
+        "type": "mosca in",
+        "z": "ff299056.845cf",
+        "mqtt_port": 1883,
+        "mqtt_ws_port": 8080,
+        "name": "",
+        "username": "",
+        "password": "",
+        "dburl": "",
+        "x": 307,
+        "y": 190,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4ef7cbe1.b7aca4",
+        "type": "mqtt in",
+        "z": "ff299056.845cf",
+        "name": "",
+        "topic": "netio/PowerCable-7B/output/1/state",
+        "qos": "0",
+        "datatype": "json",
+        "broker": "334307e2.d7e5d8",
+        "x": 473,
+        "y": 288,
+        "wires": [
+            [
+                "51afecca.a75924"
+            ]
+        ]
+    },
+    {
+        "id": "f003d3f4.df5b9",
+        "type": "mqtt out",
+        "z": "ff299056.845cf",
+        "name": "",
+        "topic": "netio/PowerCable-7B/output/1/action",
+        "qos": "0",
+        "retain": "",
+        "broker": "334307e2.d7e5d8",
+        "x": 757,
+        "y": 630,
+        "wires": []
+    },
+    {
+        "id": "91c12d1e.d00ca",
+        "type": "mqtt in",
+        "z": "ff299056.845cf",
+        "name": "",
+        "topic": "netio/PowerCable-7B/output/1/load",
+        "qos": "0",
+        "datatype": "json",
+        "broker": "334307e2.d7e5d8",
+        "x": 593,
+        "y": 361,
+        "wires": [
+            [
+                "4b587901.93e038"
+            ]
+        ]
+    },
+    {
+        "id": "99ce059.65d32f8",
+        "type": "ui_button",
+        "z": "ff299056.845cf",
+        "name": "",
+        "group": "6ed319ba.0b9c48",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "button",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "4",
+        "payloadType": "num",
+        "topic": "",
+        "x": 442.5,
+        "y": 629,
+        "wires": [
+            [
+                "f003d3f4.df5b9"
+            ]
+        ]
+    },
+    {
+        "id": "4b587901.93e038",
+        "type": "ui_chart",
+        "z": "ff299056.845cf",
+        "name": "",
+        "group": "6ed319ba.0b9c48",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "label": "chart",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "step",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "10",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "outputs": 1,
+        "x": 822.5,
+        "y": 265,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c9be2b88.942eb8",
+        "type": "mqtt in",
+        "z": "ff299056.845cf",
+        "name": "",
+        "topic": "netio/PowerCable-7B/output/1/energy",
+        "qos": "0",
+        "datatype": "json",
+        "broker": "334307e2.d7e5d8",
+        "x": 520,
+        "y": 460,
+        "wires": [
+            [
+                "e5c18264.32df4"
+            ]
+        ]
+    },
+    {
+        "id": "e5c18264.32df4",
+        "type": "ui_text",
+        "z": "ff299056.845cf",
+        "group": "6ed319ba.0b9c48",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Zużycie energii",
+        "format": "{{msg.payload}} Wh",
+        "layout": "row-spread",
+        "x": 840.5,
+        "y": 461,
+        "wires": []
+    },
+    {
+        "id": "51afecca.a75924",
+        "type": "function",
+        "z": "ff299056.845cf",
+        "name": "",
+        "func": "msg.payload = msg.payload*100;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 683.5,
+        "y": 269,
+        "wires": [
+            [
+                "4b587901.93e038"
+            ]
+        ]
+    },
+    {
+        "id": "334307e2.d7e5d8",
+        "type": "mqtt-broker",
+        "z": "",
+        "name": "local",
+        "broker": "192.168.0.150",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": true,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    },
+    {
+        "id": "6ed319ba.0b9c48",
+        "type": "ui_group",
+        "z": "",
+        "name": "Power cable",
+        "tab": "e5b8d1ec.e0145",
+        "disp": true,
+        "width": "12",
+        "collapse": false
+    },
+    {
+        "id": "e5b8d1ec.e0145",
+        "type": "ui_tab",
+        "z": "",
+        "name": "Netio",
+        "icon": "Netio",
+        "disabled": false,
+        "hidden": false
+    }
+]
