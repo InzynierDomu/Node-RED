@@ -1,0 +1,195 @@
+[
+    {
+        "id": "9b8e73ba.3c086",
+        "type": "rpi-gpio in",
+        "z": "9a2564ec.117628",
+        "name": "",
+        "pin": "38",
+        "intype": "tri",
+        "debounce": "25",
+        "read": false,
+        "x": 440,
+        "y": 240,
+        "wires": [
+            [
+                "af1aacb2.b2eb9"
+            ]
+        ]
+    },
+    {
+        "id": "270b55b0.678c4a",
+        "type": "rpi-gpio out",
+        "z": "9a2564ec.117628",
+        "name": "",
+        "pin": "40",
+        "set": "",
+        "level": "0",
+        "freq": "",
+        "out": "out",
+        "x": 1020,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "c07545f9.a73fe8",
+        "type": "and-gate",
+        "z": "9a2564ec.117628",
+        "name": "",
+        "rules": [
+            {
+                "t": "true",
+                "propertyType": "msg",
+                "property": "payload",
+                "topic": "led"
+            },
+            {
+                "t": "true",
+                "propertyType": "msg",
+                "property": "payload",
+                "topic": "trig"
+            }
+        ],
+        "outputTopic": "",
+        "gateType": "and",
+        "emitOnlyIfTrue": true,
+        "x": 520,
+        "y": 500,
+        "wires": [
+            [
+                "90bf0089.23acd"
+            ]
+        ]
+    },
+    {
+        "id": "9cd8128f.25045",
+        "type": "inject",
+        "z": "9a2564ec.117628",
+        "name": "",
+        "topic": "trig",
+        "payload": "true",
+        "payloadType": "bool",
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 260,
+        "y": 600,
+        "wires": [
+            [
+                "c07545f9.a73fe8",
+                "25cce5a9.60eb6a"
+            ]
+        ]
+    },
+    {
+        "id": "66828e74.f96c5",
+        "type": "ui_switch",
+        "z": "9a2564ec.117628",
+        "name": "led",
+        "label": "LED",
+        "tooltip": "",
+        "group": "5a3300d3.4a8b3",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "led",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "x": 270,
+        "y": 460,
+        "wires": [
+            [
+                "c07545f9.a73fe8"
+            ]
+        ]
+    },
+    {
+        "id": "af1aacb2.b2eb9",
+        "type": "ui_gauge",
+        "z": "9a2564ec.117628",
+        "name": "",
+        "group": "5a3300d3.4a8b3",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "stan pinu",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "1",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 840,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "90bf0089.23acd",
+        "type": "trigger",
+        "z": "9a2564ec.117628",
+        "op1": "true",
+        "op2": "false",
+        "op1type": "bool",
+        "op2type": "bool",
+        "duration": "250",
+        "extend": false,
+        "units": "ms",
+        "reset": "",
+        "bytopic": "all",
+        "name": "",
+        "x": 740,
+        "y": 500,
+        "wires": [
+            [
+                "270b55b0.678c4a"
+            ]
+        ]
+    },
+    {
+        "id": "25cce5a9.60eb6a",
+        "type": "debug",
+        "z": "9a2564ec.117628",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 530,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "5a3300d3.4a8b3",
+        "type": "ui_group",
+        "z": "",
+        "name": "Blink",
+        "tab": "3b49cb84.38ab64",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "3b49cb84.38ab64",
+        "type": "ui_tab",
+        "name": "Tab 2",
+        "icon": "dashboard",
+        "order": 2
+    }
+]
