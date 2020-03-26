@@ -1,0 +1,245 @@
+[
+    {
+        "id": "302f08d4.e61d08",
+        "type": "mosca in",
+        "z": "c7b404f9.6de1c8",
+        "mqtt_port": 1883,
+        "mqtt_ws_port": 8080,
+        "name": "",
+        "username": "",
+        "password": "",
+        "dburl": "",
+        "x": 330,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "23110a85.1d3f56",
+        "type": "mqtt out",
+        "z": "c7b404f9.6de1c8",
+        "name": "",
+        "topic": "netio/PowerCable-7B/output/1/action",
+        "qos": "0",
+        "retain": "",
+        "broker": "4de4785.6cce188",
+        "x": 750,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "5a76561c.e232e8",
+        "type": "mqtt in",
+        "z": "c7b404f9.6de1c8",
+        "name": "",
+        "topic": "netio/PowerCable-7B/output/1/load",
+        "qos": "0",
+        "datatype": "json",
+        "broker": "4de4785.6cce188",
+        "x": 580,
+        "y": 280,
+        "wires": [
+            [
+                "15d37d58.508773"
+            ]
+        ]
+    },
+    {
+        "id": "15d37d58.508773",
+        "type": "ui_chart",
+        "z": "c7b404f9.6de1c8",
+        "name": "",
+        "group": "3267764.4f0c88a",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "label": "Pobór mocy",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "step",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "60",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "outputs": 1,
+        "x": 865.5,
+        "y": 275,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "15d905c9.22d97a",
+        "type": "mqtt in",
+        "z": "c7b404f9.6de1c8",
+        "name": "",
+        "topic": "netio/PowerCable-7B/output/1/energy",
+        "qos": "0",
+        "datatype": "json",
+        "broker": "4de4785.6cce188",
+        "x": 543,
+        "y": 470,
+        "wires": [
+            [
+                "ece6cbd9.ec7fb8"
+            ]
+        ]
+    },
+    {
+        "id": "ece6cbd9.ec7fb8",
+        "type": "ui_text",
+        "z": "c7b404f9.6de1c8",
+        "group": "3267764.4f0c88a",
+        "order": 2,
+        "width": 7,
+        "height": 1,
+        "name": "",
+        "label": "Zużycie energii",
+        "format": "{{msg.payload}} Wh",
+        "layout": "row-spread",
+        "x": 863.5,
+        "y": 471,
+        "wires": []
+    },
+    {
+        "id": "dde801d1.6ece2",
+        "type": "ui_template",
+        "z": "c7b404f9.6de1c8",
+        "group": "44deae87.57196",
+        "name": "",
+        "order": 1,
+        "width": 14,
+        "height": 13,
+        "format": "<iframe src=\"http://192.168.0.150:3344/#!/dashboard\" height=\"640\">\n</iframe>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 600,
+        "y": 760,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "58d13b7b.7a32a4",
+        "type": "ui_switch",
+        "z": "c7b404f9.6de1c8",
+        "name": "",
+        "label": "Włącz/Wyłącz",
+        "tooltip": "",
+        "group": "3267764.4f0c88a",
+        "order": 1,
+        "width": 7,
+        "height": 1,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "",
+        "style": "",
+        "onvalue": "1",
+        "onvalueType": "num",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "0",
+        "offvalueType": "num",
+        "officon": "",
+        "offcolor": "",
+        "x": 440,
+        "y": 620,
+        "wires": [
+            [
+                "23110a85.1d3f56"
+            ]
+        ]
+    },
+    {
+        "id": "dacdce6d.4b886",
+        "type": "ui_template",
+        "z": "c7b404f9.6de1c8",
+        "group": "44deae87.57196",
+        "name": "",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "format": "<iframe src=\"http://192.168.0.150:8081\" height=\"490\">\n</iframe>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 600,
+        "y": 880,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4de4785.6cce188",
+        "type": "mqtt-broker",
+        "z": "",
+        "name": "local",
+        "broker": "192.168.0.150",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": true,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    },
+    {
+        "id": "3267764.4f0c88a",
+        "type": "ui_group",
+        "z": "",
+        "name": "Power cable",
+        "tab": "590274be.9b8ccc",
+        "order": 2,
+        "disp": true,
+        "width": 14,
+        "collapse": false
+    },
+    {
+        "id": "44deae87.57196",
+        "type": "ui_group",
+        "z": "",
+        "name": "Serwer",
+        "tab": "590274be.9b8ccc",
+        "order": 1,
+        "disp": true,
+        "width": "14",
+        "collapse": false
+    },
+    {
+        "id": "590274be.9b8ccc",
+        "type": "ui_tab",
+        "z": "",
+        "name": "Drukarka",
+        "icon": "Drukarka",
+        "disabled": false,
+        "hidden": false
+    }
+]

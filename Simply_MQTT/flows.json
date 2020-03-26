@@ -1,0 +1,133 @@
+[
+    {
+        "id": "4be7223b.dbf61c",
+        "type": "mqtt in",
+        "z": "8ac54af.8f35eb8",
+        "name": "",
+        "topic": "/home/button",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "4de4785.6cce188",
+        "x": 480,
+        "y": 260,
+        "wires": [
+            [
+                "714d0266.2f0cfc"
+            ]
+        ]
+    },
+    {
+        "id": "6c6834ac.2fb0cc",
+        "type": "mqtt out",
+        "z": "8ac54af.8f35eb8",
+        "name": "",
+        "topic": "/home/lamp",
+        "qos": "",
+        "retain": "",
+        "broker": "4de4785.6cce188",
+        "x": 760,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "bc34bb1b.8a9678",
+        "type": "mosca in",
+        "z": "8ac54af.8f35eb8",
+        "mqtt_port": 1883,
+        "mqtt_ws_port": 8080,
+        "name": "",
+        "username": "",
+        "password": "",
+        "dburl": "",
+        "x": 330,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "714d0266.2f0cfc",
+        "type": "ui_text",
+        "z": "8ac54af.8f35eb8",
+        "group": "c049a4ac.4bcda8",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "text",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 740,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "9a77a966.b5cd48",
+        "type": "ui_switch",
+        "z": "8ac54af.8f35eb8",
+        "name": "",
+        "label": "switch",
+        "tooltip": "",
+        "group": "c049a4ac.4bcda8",
+        "order": 1,
+        "width": "0",
+        "height": "0",
+        "passthru": true,
+        "decouple": "false",
+        "topic": "",
+        "style": "",
+        "onvalue": "1",
+        "onvalueType": "num",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "0",
+        "offvalueType": "num",
+        "officon": "",
+        "offcolor": "",
+        "x": 490,
+        "y": 420,
+        "wires": [
+            [
+                "6c6834ac.2fb0cc"
+            ]
+        ]
+    },
+    {
+        "id": "4de4785.6cce188",
+        "type": "mqtt-broker",
+        "z": "",
+        "name": "local",
+        "broker": "192.168.0.150",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": true,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    },
+    {
+        "id": "c049a4ac.4bcda8",
+        "type": "ui_group",
+        "name": "Group 2",
+        "tab": "3b49cb84.38ab64",
+        "order": 2,
+        "disp": true,
+        "width": 6
+    },
+    {
+        "id": "3b49cb84.38ab64",
+        "type": "ui_tab",
+        "name": "Tab 2",
+        "icon": "dashboard",
+        "order": 2
+    }
+]
