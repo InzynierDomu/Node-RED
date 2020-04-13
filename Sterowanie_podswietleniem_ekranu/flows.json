@@ -1,0 +1,190 @@
+[
+    {
+        "id": "69fc4573.0a65bc",
+        "type": "exec",
+        "z": "579955df.b0e6fc",
+        "command": "echo 1 | sudo tee /sys/class/backlight/rpi_backlight/bl_power",
+        "addpay": true,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "",
+        "x": 780,
+        "y": 740,
+        "wires": [
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "af6bfdea.0d84",
+        "type": "exec",
+        "z": "579955df.b0e6fc",
+        "command": "echo 0 | sudo tee /sys/class/backlight/rpi_backlight/bl_power",
+        "addpay": true,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "",
+        "x": 784,
+        "y": 829.5,
+        "wires": [
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "6ed3a9b1.1be5a8",
+        "type": "switch",
+        "z": "579955df.b0e6fc",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "0",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 417.5,
+        "y": 783.5,
+        "wires": [
+            [
+                "69fc4573.0a65bc"
+            ],
+            [
+                "af6bfdea.0d84"
+            ]
+        ]
+    },
+    {
+        "id": "bf5c0fa.aa0d2f",
+        "type": "ui_switch",
+        "z": "579955df.b0e6fc",
+        "name": "",
+        "label": "Panel",
+        "tooltip": "",
+        "group": "ad0213a7.b72d7",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "",
+        "style": "",
+        "onvalue": "1",
+        "onvalueType": "num",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "0",
+        "offvalueType": "num",
+        "officon": "",
+        "offcolor": "",
+        "x": 262.5,
+        "y": 784,
+        "wires": [
+            [
+                "6ed3a9b1.1be5a8"
+            ]
+        ]
+    },
+    {
+        "id": "a4dae22.304002",
+        "type": "exec",
+        "z": "579955df.b0e6fc",
+        "command": "sudo python test.py",
+        "addpay": true,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "",
+        "x": 760,
+        "y": 1000,
+        "wires": [
+            [
+                "e22aad09.e6d13"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "cfd11404.099008",
+        "type": "inject",
+        "z": "579955df.b0e6fc",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 440,
+        "y": 1000,
+        "wires": [
+            [
+                "a4dae22.304002"
+            ]
+        ]
+    },
+    {
+        "id": "e22aad09.e6d13",
+        "type": "debug",
+        "z": "579955df.b0e6fc",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 1010,
+        "y": 980,
+        "wires": []
+    },
+    {
+        "id": "e94fe181.48086",
+        "type": "comment",
+        "z": "579955df.b0e6fc",
+        "name": "Przykład z skryptem w Pythonie",
+        "info": "",
+        "x": 690,
+        "y": 940,
+        "wires": []
+    },
+    {
+        "id": "ad0213a7.b72d7",
+        "type": "ui_group",
+        "z": "",
+        "name": "Ekrany",
+        "tab": "776696a2.a1f7b8",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "776696a2.a1f7b8",
+        "type": "ui_tab",
+        "z": "",
+        "name": "Pokój Ewa & Szymon",
+        "icon": "dashboard",
+        "order": 2,
+        "disabled": false,
+        "hidden": false
+    }
+]
