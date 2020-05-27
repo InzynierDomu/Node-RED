@@ -1,0 +1,303 @@
+[
+    {
+        "id": "c4f87ffe.28879",
+        "type": "csv",
+        "z": "6206859e.39c17c",
+        "name": "csv",
+        "sep": ",",
+        "hdrin": true,
+        "hdrout": "",
+        "multi": "one",
+        "ret": "\\n",
+        "temp": "",
+        "skip": "0",
+        "strings": true,
+        "x": 470,
+        "y": 240,
+        "wires": [
+            [
+                "621f23f7.9cbd3c",
+                "785026f3.733aa8"
+            ]
+        ]
+    },
+    {
+        "id": "6959aa91.256154",
+        "type": "file in",
+        "z": "6206859e.39c17c",
+        "name": "",
+        "filename": "F:\\Projects\\testy.csv",
+        "format": "lines",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "x": 300,
+        "y": 240,
+        "wires": [
+            [
+                "c4f87ffe.28879"
+            ]
+        ]
+    },
+    {
+        "id": "73ce0b4d.e1b6a4",
+        "type": "ui_button",
+        "z": "6206859e.39c17c",
+        "name": "",
+        "group": "a2e79722.2796d8",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Testujemy",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "x": 80,
+        "y": 240,
+        "wires": [
+            [
+                "6959aa91.256154"
+            ]
+        ]
+    },
+    {
+        "id": "e78242be.e9bfe",
+        "type": "exec",
+        "z": "6206859e.39c17c",
+        "command": "Python3 F:\\Projects\\super_kalkulator_1.py",
+        "addpay": true,
+        "append": "",
+        "useSpawn": "true",
+        "timer": "",
+        "oldrc": false,
+        "name": "wyniki",
+        "x": 810,
+        "y": 200,
+        "wires": [
+            [
+                "b0e6e3c.e79cf2"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "621f23f7.9cbd3c",
+        "type": "function",
+        "z": "6206859e.39c17c",
+        "name": "",
+        "func": "msg.payload = msg.payload.A + \" \" + msg.payload.B; \nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 670,
+        "y": 200,
+        "wires": [
+            [
+                "e78242be.e9bfe"
+            ]
+        ]
+    },
+    {
+        "id": "1c91e697.0c7869",
+        "type": "ui_chart",
+        "z": "6206859e.39c17c",
+        "name": "",
+        "group": "119165c.f040b9a",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "label": "Wyniki testów",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#00ff00",
+            "#ff8080",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "outputs": 1,
+        "x": 1440,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b0e6e3c.e79cf2",
+        "type": "join",
+        "z": "6206859e.39c17c",
+        "name": "",
+        "mode": "custom",
+        "build": "array",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": ";",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "6",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "num",
+        "reduceFixup": "",
+        "x": 970,
+        "y": 200,
+        "wires": [
+            [
+                "11b24df3.b71a72"
+            ]
+        ]
+    },
+    {
+        "id": "437ed207.32697c",
+        "type": "join",
+        "z": "6206859e.39c17c",
+        "name": "",
+        "mode": "custom",
+        "build": "array",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": ";",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "6",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 970,
+        "y": 260,
+        "wires": [
+            [
+                "11b24df3.b71a72"
+            ]
+        ]
+    },
+    {
+        "id": "785026f3.733aa8",
+        "type": "function",
+        "z": "6206859e.39c17c",
+        "name": "",
+        "func": "msg.payload = msg.payload.C;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 670,
+        "y": 260,
+        "wires": [
+            [
+                "437ed207.32697c"
+            ]
+        ]
+    },
+    {
+        "id": "11b24df3.b71a72",
+        "type": "join",
+        "z": "6206859e.39c17c",
+        "name": "",
+        "mode": "custom",
+        "build": "array",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "2",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 1110,
+        "y": 240,
+        "wires": [
+            [
+                "9c343594.aad318"
+            ]
+        ]
+    },
+    {
+        "id": "9c343594.aad318",
+        "type": "function",
+        "z": "6206859e.39c17c",
+        "name": "",
+        "func": "var positive = 0;\nvar negative = 0;\nfor(var step = 0; step < 6; step++)\n{\n    if(msg.payload[0][step] == msg.payload[1][step])\n    {\n        positive++;\n    }\n    else\n    {\n        negative++;\n    }\n}\n\nvar MsgPos = { payload: parseInt(positive, 10) };\nMsgPos.topic = \"Pozytywne\";\nvar MsgNeg = { payload: parseInt(negative, 10) };\nMsgNeg.topic = \"Negatywne\";\nreturn [MsgPos, MsgNeg];\n",
+        "outputs": 2,
+        "noerr": 0,
+        "x": 1270,
+        "y": 240,
+        "wires": [
+            [
+                "1c91e697.0c7869"
+            ],
+            [
+                "1c91e697.0c7869"
+            ]
+        ]
+    },
+    {
+        "id": "a2e79722.2796d8",
+        "type": "ui_group",
+        "z": "",
+        "name": "Default",
+        "tab": "1f0c2b03.da63b5",
+        "order": 1,
+        "disp": false,
+        "width": "12",
+        "collapse": false
+    },
+    {
+        "id": "119165c.f040b9a",
+        "type": "ui_group",
+        "name": "Group 1",
+        "tab": "9dc70dc8.542e9",
+        "order": 1,
+        "disp": true,
+        "width": 6
+    },
+    {
+        "id": "1f0c2b03.da63b5",
+        "type": "ui_tab",
+        "z": "",
+        "name": "Home",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "9dc70dc8.542e9",
+        "type": "ui_tab",
+        "name": "Tab 2",
+        "icon": "dashboard",
+        "order": 2
+    }
+]
