@@ -1,0 +1,532 @@
+[
+    {
+        "id": "97b1a477.9096c8",
+        "type": "mqtt in",
+        "z": "aafe2369.1e9b9",
+        "name": "",
+        "topic": "pot/sensor_1",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "4de4785.6cce188",
+        "x": 630,
+        "y": 540,
+        "wires": [
+            [
+                "ce8cad2b.3b09c"
+            ]
+        ]
+    },
+    {
+        "id": "cfb7683d.621818",
+        "type": "mqtt in",
+        "z": "aafe2369.1e9b9",
+        "name": "",
+        "topic": "pot/sensor_2",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "4de4785.6cce188",
+        "x": 640,
+        "y": 620,
+        "wires": [
+            [
+                "3ea7890f.022916"
+            ]
+        ]
+    },
+    {
+        "id": "48dc5022.6c846",
+        "type": "mqtt in",
+        "z": "aafe2369.1e9b9",
+        "name": "",
+        "topic": "pot/sensor_3",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "4de4785.6cce188",
+        "x": 640,
+        "y": 700,
+        "wires": [
+            [
+                "79ab1bbc.54e8c4"
+            ]
+        ]
+    },
+    {
+        "id": "f76b48e0.08fb68",
+        "type": "mqtt in",
+        "z": "aafe2369.1e9b9",
+        "name": "",
+        "topic": "pot/sensor_4",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "4de4785.6cce188",
+        "x": 640,
+        "y": 780,
+        "wires": [
+            [
+                "af4541b2.136d5"
+            ]
+        ]
+    },
+    {
+        "id": "58ea469a.df6be8",
+        "type": "ui_button",
+        "z": "aafe2369.1e9b9",
+        "name": "",
+        "group": "bfc760e4.82c82",
+        "order": 2,
+        "width": 3,
+        "height": 1,
+        "passthru": false,
+        "label": "Podlewanie",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "x": 650,
+        "y": 200,
+        "wires": [
+            [
+                "81c7dadf.b41d28"
+            ]
+        ]
+    },
+    {
+        "id": "95385f59.8b489",
+        "type": "ui_chart",
+        "z": "aafe2369.1e9b9",
+        "name": "",
+        "group": "bfc760e4.82c82",
+        "order": 7,
+        "width": 0,
+        "height": 0,
+        "label": "Historia pomiarów",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "604800",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "outputs": 1,
+        "x": 1300,
+        "y": 720,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a16ea0c6.b13b4",
+        "type": "ui_gauge",
+        "z": "aafe2369.1e9b9",
+        "name": "",
+        "group": "bfc760e4.82c82",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Czujnik rezystancyjny",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 1310,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "3a43021c.f18bfe",
+        "type": "ui_gauge",
+        "z": "aafe2369.1e9b9",
+        "name": "",
+        "group": "bfc760e4.82c82",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Czujnik pojemnościowy poziomy",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 1340,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "e3142cf0.90733",
+        "type": "ui_gauge",
+        "z": "aafe2369.1e9b9",
+        "name": "",
+        "group": "bfc760e4.82c82",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Czujnik pojemnościowy pionowy w obudowie",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 1380,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "d74f7c1c.592d4",
+        "type": "ui_gauge",
+        "z": "aafe2369.1e9b9",
+        "name": "",
+        "group": "bfc760e4.82c82",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Czujnik pojemnościowy pionowy",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 1340,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "ce8cad2b.3b09c",
+        "type": "function",
+        "z": "aafe2369.1e9b9",
+        "name": "",
+        "func": "var val = parseInt(msg.payload, 10);\nmsg.topic = \"Czujnik_rezystancyjny\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 910,
+        "y": 520,
+        "wires": [
+            [
+                "a16ea0c6.b13b4",
+                "95385f59.8b489",
+                "7060cba8.ce5924"
+            ]
+        ]
+    },
+    {
+        "id": "3ea7890f.022916",
+        "type": "function",
+        "z": "aafe2369.1e9b9",
+        "name": "",
+        "func": "var val = parseInt(msg.payload, 10);\nmsg.topic = \"Czujnik_pojemnościowy_poziomy\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 920,
+        "y": 580,
+        "wires": [
+            [
+                "3a43021c.f18bfe",
+                "95385f59.8b489",
+                "48da4783.248c28"
+            ]
+        ]
+    },
+    {
+        "id": "79ab1bbc.54e8c4",
+        "type": "function",
+        "z": "aafe2369.1e9b9",
+        "name": "",
+        "func": "var val = parseInt(msg.payload, 10);\nmsg.topic = \"Czujnik_pojemnościowy_pionowy\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 920,
+        "y": 640,
+        "wires": [
+            [
+                "d74f7c1c.592d4",
+                "95385f59.8b489",
+                "63c6dc67.3aa7d4"
+            ]
+        ]
+    },
+    {
+        "id": "af4541b2.136d5",
+        "type": "function",
+        "z": "aafe2369.1e9b9",
+        "name": "",
+        "func": "var val = parseInt(msg.payload, 10);\nmsg.topic = \"Czujnik_pojemnościowy_pionowy_obudowa\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 920,
+        "y": 700,
+        "wires": [
+            [
+                "e3142cf0.90733",
+                "95385f59.8b489",
+                "7d6ed563.37559c"
+            ]
+        ]
+    },
+    {
+        "id": "d1c65c95.e96e3",
+        "type": "http request",
+        "z": "aafe2369.1e9b9",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 1270,
+        "y": 40,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "81c7dadf.b41d28",
+        "type": "function",
+        "z": "aafe2369.1e9b9",
+        "name": "",
+        "func": "msg.event = \"pot_comment\";\nvar retval = {\"value1\": \"podlewanie\"};\nmsg.payload = retval;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 900,
+        "y": 200,
+        "wires": [
+            [
+                "d1c65c95.e96e3"
+            ]
+        ]
+    },
+    {
+        "id": "dab6395c.88a508",
+        "type": "http request",
+        "z": "aafe2369.1e9b9",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 1270,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "36f67115.22772e",
+        "type": "http request",
+        "z": "aafe2369.1e9b9",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 1290,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7d24db1a.491c34",
+        "type": "http request",
+        "z": "aafe2369.1e9b9",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 1330,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "21211537.47a1ba",
+        "type": "http request",
+        "z": "aafe2369.1e9b9",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 1370,
+        "y": 220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7060cba8.ce5924",
+        "type": "function",
+        "z": "aafe2369.1e9b9",
+        "name": "",
+        "func": "msg.event = \"pot_sens1\";\nvar retval = {\"value1\": msg.payload};\nmsg.payload = retval;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1030,
+        "y": 240,
+        "wires": [
+            [
+                "dab6395c.88a508"
+            ]
+        ]
+    },
+    {
+        "id": "48da4783.248c28",
+        "type": "function",
+        "z": "aafe2369.1e9b9",
+        "name": "",
+        "func": "msg.event = \"pot_sens2\";\nvar retval = {\"value1\": msg.payload};\nmsg.payload = retval;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1070,
+        "y": 300,
+        "wires": [
+            [
+                "36f67115.22772e"
+            ]
+        ]
+    },
+    {
+        "id": "63c6dc67.3aa7d4",
+        "type": "function",
+        "z": "aafe2369.1e9b9",
+        "name": "",
+        "func": "msg.event = \"pot_sens3\";\nvar retval = {\"value1\": msg.payload};\nmsg.payload = retval;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1110,
+        "y": 360,
+        "wires": [
+            [
+                "7d24db1a.491c34"
+            ]
+        ]
+    },
+    {
+        "id": "7d6ed563.37559c",
+        "type": "function",
+        "z": "aafe2369.1e9b9",
+        "name": "",
+        "func": "msg.event = \"pot_sens4\";\nvar retval = {\"value1\": msg.payload};\nmsg.payload = retval;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1170,
+        "y": 420,
+        "wires": [
+            [
+                "21211537.47a1ba"
+            ]
+        ]
+    },
+    {
+        "id": "4de4785.6cce188",
+        "type": "mqtt-broker",
+        "z": "",
+        "name": "local",
+        "broker": "192.168.0.150",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": true,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    },
+    {
+        "id": "bfc760e4.82c82",
+        "type": "ui_group",
+        "z": "",
+        "name": "Doniczka",
+        "tab": "3b49cb84.38ab64",
+        "order": 2,
+        "disp": true,
+        "width": "7",
+        "collapse": false
+    },
+    {
+        "id": "3b49cb84.38ab64",
+        "type": "ui_tab",
+        "z": "",
+        "name": "Szklarnia",
+        "icon": "fa-leaf",
+        "order": 2,
+        "disabled": false,
+        "hidden": false
+    }
+]
