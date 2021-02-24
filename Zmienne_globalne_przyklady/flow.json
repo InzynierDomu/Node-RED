@@ -1,0 +1,398 @@
+[
+    {
+        "id": "a5de1599.a00e48",
+        "type": "tab",
+        "label": "Flow 4",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "d318909f.1790f",
+        "type": "mqtt out",
+        "z": "a5de1599.a00e48",
+        "name": "",
+        "topic": "greenhouse/output/light",
+        "qos": "0",
+        "retain": "",
+        "broker": "bf3140bb.f9894",
+        "x": 1090,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "9de44310.a4253",
+        "type": "ui_switch",
+        "z": "a5de1599.a00e48",
+        "name": "",
+        "label": "Lampy",
+        "tooltip": "",
+        "group": "c049a4ac.4bcda8",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "",
+        "style": "",
+        "onvalue": "1",
+        "onvalueType": "num",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "0",
+        "offvalueType": "num",
+        "officon": "",
+        "offcolor": "",
+        "x": 990,
+        "y": 440,
+        "wires": [
+            [
+                "d318909f.1790f",
+                "86cd9349.4a17"
+            ]
+        ]
+    },
+    {
+        "id": "b1ba9932.a760d8",
+        "type": "ui_text_input",
+        "z": "a5de1599.a00e48",
+        "name": "",
+        "label": "",
+        "tooltip": "",
+        "group": "c049a4ac.4bcda8",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "time",
+        "delay": 300,
+        "topic": "set_time",
+        "x": 340,
+        "y": 340,
+        "wires": [
+            [
+                "21cebebb.5dd2e2"
+            ]
+        ]
+    },
+    {
+        "id": "bf82f822.4965d8",
+        "type": "ui_switch",
+        "z": "a5de1599.a00e48",
+        "name": "",
+        "label": "Auto",
+        "tooltip": "",
+        "group": "c049a4ac.4bcda8",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "auto",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "x": 630,
+        "y": 480,
+        "wires": [
+            [
+                "c8c3656c.806388"
+            ]
+        ]
+    },
+    {
+        "id": "3c11e05d.b4742",
+        "type": "inject",
+        "z": "a5de1599.a00e48",
+        "name": "time",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "60",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "time",
+        "payload": "",
+        "payloadType": "date",
+        "x": 190,
+        "y": 460,
+        "wires": [
+            [
+                "1c56f81a.4cbd98"
+            ]
+        ]
+    },
+    {
+        "id": "21cebebb.5dd2e2",
+        "type": "function",
+        "z": "a5de1599.a00e48",
+        "name": "",
+        "func": "var time_now;\n\nif(msg.topic === \"time_now\")\n{\n    var time_now_h = msg.payload.substring(11,13);\n    var time_now_m = msg.payload.substring(14,16);\n    time_now = ((parseInt(time_now_h) * 60) + parseInt(time_now_m)) * 60 *1000\n}\n\nif(msg.topic ===\"set_time\")\n{\n    global.set('seted_time',msg.payload);\n}\n\nif(time_now === global.get('seted_time'))\n{\n    msg.topic = \"time_alarm\";\n    msg.payload = \"1\";\n    return msg;\n}\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 650,
+        "y": 380,
+        "wires": [
+            [
+                "c8c3656c.806388"
+            ]
+        ]
+    },
+    {
+        "id": "1c56f81a.4cbd98",
+        "type": "moment",
+        "z": "a5de1599.a00e48",
+        "name": "",
+        "topic": "time_now",
+        "input": "",
+        "inputType": "msg",
+        "inTz": "Europe/Warsaw",
+        "adjAmount": "1",
+        "adjType": "hours",
+        "adjDir": "add",
+        "format": "",
+        "locale": "pl_PL",
+        "output": "",
+        "outputType": "msg",
+        "outTz": "Europe/Warsaw",
+        "x": 380,
+        "y": 500,
+        "wires": [
+            [
+                "21cebebb.5dd2e2"
+            ]
+        ]
+    },
+    {
+        "id": "c8c3656c.806388",
+        "type": "and-gate",
+        "z": "a5de1599.a00e48",
+        "name": "",
+        "rules": [
+            {
+                "t": "true",
+                "propertyType": "msg",
+                "property": "payload",
+                "topic": "auto"
+            },
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "str",
+                "propertyType": "msg",
+                "property": "payload",
+                "topic": "time_alarm"
+            }
+        ],
+        "outputTopic": "",
+        "gateType": "and",
+        "emitOnlyIfTrue": true,
+        "x": 820,
+        "y": 440,
+        "wires": [
+            [
+                "9de44310.a4253"
+            ]
+        ]
+    },
+    {
+        "id": "b44bf9ca.d45f78",
+        "type": "ui_button",
+        "z": "a5de1599.a00e48",
+        "name": "",
+        "group": "1a47ccf7.ba6e73",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "oporoznij",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "x": 460,
+        "y": 1160,
+        "wires": [
+            [
+                "a6c6575.66335a8"
+            ]
+        ]
+    },
+    {
+        "id": "b9bf7c4b.2f3fb",
+        "type": "ui_button",
+        "z": "a5de1599.a00e48",
+        "name": "",
+        "group": "1a47ccf7.ba6e73",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "napelnij",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "123",
+        "payloadType": "str",
+        "topic": "",
+        "x": 460,
+        "y": 1040,
+        "wires": [
+            [
+                "a25bed0c.dd7c"
+            ]
+        ]
+    },
+    {
+        "id": "3594aee8.e4aec2",
+        "type": "debug",
+        "z": "a5de1599.a00e48",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 830,
+        "y": 1040,
+        "wires": []
+    },
+    {
+        "id": "b0258afb.7efcc8",
+        "type": "debug",
+        "z": "a5de1599.a00e48",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 830,
+        "y": 1160,
+        "wires": []
+    },
+    {
+        "id": "86cd9349.4a17",
+        "type": "debug",
+        "z": "a5de1599.a00e48",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1170,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "a6c6575.66335a8",
+        "type": "function",
+        "z": "a5de1599.a00e48",
+        "name": "",
+        "func": "msg.payload = global.get(\"stan_zbiornika\");\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 620,
+        "y": 1120,
+        "wires": [
+            [
+                "b0258afb.7efcc8"
+            ]
+        ]
+    },
+    {
+        "id": "a25bed0c.dd7c",
+        "type": "function",
+        "z": "a5de1599.a00e48",
+        "name": "",
+        "func": "global.set('stan_zbiornika',msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 650,
+        "y": 1000,
+        "wires": [
+            [
+                "3594aee8.e4aec2"
+            ]
+        ]
+    },
+    {
+        "id": "bf3140bb.f9894",
+        "type": "mqtt-broker",
+        "name": "local",
+        "broker": "192.168.0.17",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": false,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    },
+    {
+        "id": "c049a4ac.4bcda8",
+        "type": "ui_group",
+        "name": "Oświetlenie",
+        "tab": "3b49cb84.38ab64",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "1a47ccf7.ba6e73",
+        "type": "ui_group",
+        "name": "zbiornik",
+        "tab": "3b49cb84.38ab64",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "3b49cb84.38ab64",
+        "type": "ui_tab",
+        "name": "Szklarnia",
+        "icon": "fa-leaf",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    }
+]
